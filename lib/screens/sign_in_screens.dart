@@ -69,17 +69,26 @@ class _SignInScreenState extends State<SignInScreen> {
                       Align(
                         alignment: Alignment.center,
                         child: CustomMainBotton(
-                            child: Text(
-                              "Sign In",
-                              style: TextStyle(letterSpacing: 0.6),
-                            ),
-                            color: Colors.orange,
-                            isLoading: false,
-                            onPressed: () {}),
+                          color: Colors.orange,
+                          isLoading: false,
+                          onPressed: () {},
+                          child: const Text(
+                            "Sign In",
+                            style: TextStyle(letterSpacing: 0.6),
+                          ),
+                        ),
                       )
                     ],
                   ),
-                )
+                ),
+                CustomMainBotton(
+                    color: Colors.green[400]!,
+                    isLoading: false,
+                    onPressed: () {},
+                    child: const Text(
+                      "create an Amazon Account",
+                      style: TextStyle(letterSpacing: 0.6),
+                    ))
               ],
             ),
           ),

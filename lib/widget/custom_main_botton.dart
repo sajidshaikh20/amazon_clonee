@@ -21,6 +21,16 @@ class CustomMainBotton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
             primary: color, fixedSize: Size(screeSize.width * 0.5, 40)),
         onPressed: onPressed,
-        child: child);
+        child: isLoading
+            ? child
+            : const Padding(
+                padding: EdgeInsets.symmetric(vertical: 5),
+                child: AspectRatio(
+                  aspectRatio: 1 / 1,
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                  ),
+                ),
+              ));
   }
 }
