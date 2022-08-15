@@ -54,8 +54,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         Container(
           decoration: BoxDecoration(boxShadow: [
             isInFocus
-                ? const BoxShadow(
-                    color: Colors.orange,
+                ? BoxShadow(
+                    color: Colors.orange.withOpacity(0.2),
                     blurRadius: 8,
                     spreadRadius: 2,
                   )

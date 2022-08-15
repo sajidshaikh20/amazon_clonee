@@ -1,3 +1,4 @@
+import 'package:amazon_clonee/screens/sign_up_screens.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:amazon_clonee/utils/constant.dart';
 import 'package:amazon_clonee/utils/utils.dart';
@@ -26,6 +27,7 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     Size screenSize = Utils().getScreenSize();
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SizedBox(
           height: screenSize.height,
@@ -68,7 +70,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           TextFieldWidget(
                             title: "Password",
                             controller: passwordController,
-                            obscureText: false,
+                            obscureText: true,
                             hintText: "Enter your password",
                           ),
                           Align(
@@ -115,7 +117,12 @@ class _SignInScreenState extends State<SignInScreen> {
                     CustomMainBotton(
                         color: Colors.grey[400]!,
                         isLoading: false,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const SignUpScreen();
+                          }));
+                        },
                         child: const FittedBox(
                           child: Text(
                             "Create an Amazon Account",
