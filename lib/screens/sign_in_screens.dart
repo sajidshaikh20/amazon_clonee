@@ -82,12 +82,17 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ),
                 CustomMainBotton(
-                    color: Colors.green[400]!,
+                    color: Colors.grey[400]!,
                     isLoading: false,
                     onPressed: () {},
-                    child: const Text(
-                      "create an Amazon Account",
-                      style: TextStyle(letterSpacing: 0.6),
+                    child: const FittedBox(
+                      child: Text(
+                        "Create an Amazon Account",
+                        softWrap: false,
+                        // overflow: null,
+                        textAlign: TextAlign.right,
+                        style: TextStyle(letterSpacing: 0.5),
+                      ),
                     ))
               ],
             ),
