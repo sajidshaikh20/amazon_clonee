@@ -1,3 +1,5 @@
+import 'package:amazon_clonee/screens/sign_in_screens.dart';
+import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,9 +13,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.red,
+        theme: ThemeData.light().copyWith(
+          scaffoldBackgroundColor: backgroundColor,
         ),
-        home: const Text("hi mom"));
+        home: const Scaffold(body: SignInScreen()));
   }
 }
