@@ -1,10 +1,7 @@
-import 'dart:ui';
-
 import 'package:amazon_clonee/utils/constant.dart';
 import 'package:amazon_clonee/utils/utils.dart';
 import 'package:amazon_clonee/widget/custom_main_botton.dart';
 import 'package:amazon_clonee/widget/text_field.widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatefulWidget {
