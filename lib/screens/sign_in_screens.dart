@@ -1,3 +1,4 @@
+import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:amazon_clonee/utils/constant.dart';
 import 'package:amazon_clonee/utils/utils.dart';
 import 'package:amazon_clonee/widget/custom_main_botton.dart';
@@ -25,76 +26,109 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     Size screenSize = Utils().getScreenSize();
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-        child: Center(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.network(
-                  amazonLogo,
-                  height: screenSize.height * 0.10,
-                ),
-                Container(
-                  height: screenSize.height * 0.6,
-                  width: screenSize.width * 0.8,
-                  padding: const EdgeInsets.all(25),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey, width: 1),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Sign-In",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 33),
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: screenSize.height,
+          width: screenSize.width,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+            child: Center(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.network(
+                      amazonLogo,
+                      height: screenSize.height * 0.10,
+                    ),
+                    Container(
+                      height: screenSize.height * 0.6,
+                      width: screenSize.width * 0.8,
+                      padding: const EdgeInsets.all(25),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey, width: 1),
                       ),
-                      TextFieldWidget(
-                        title: "Emails",
-                        controller: emailController,
-                        obscureText: false,
-                        hintText: "Enter your emails",
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Sign-In",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 33),
+                          ),
+                          TextFieldWidget(
+                            title: "Emails",
+                            controller: emailController,
+                            obscureText: false,
+                            hintText: "Enter your emails",
+                          ),
+                          TextFieldWidget(
+                            title: "Password",
+                            controller: passwordController,
+                            obscureText: false,
+                            hintText: "Enter your password",
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: CustomMainBotton(
+                              color: yellowColor,
+                              isLoading: false,
+                              onPressed: () {},
+                              child: const Text(
+                                "Sign In",
+                                style: TextStyle(
+                                    letterSpacing: 0.6, color: Colors.black),
+                              ),
+                            ),
+                          )
+                        ],
                       ),
-                      TextFieldWidget(
-                        title: "Password",
-                        controller: passwordController,
-                        obscureText: false,
-                        hintText: "Enter your password",
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: CustomMainBotton(
-                          color: Colors.orange,
-                          isLoading: false,
-                          onPressed: () {},
-                          child: const Text(
-                            "Sign In",
-                            style: TextStyle(letterSpacing: 0.6),
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            height: 1,
+                            color: Colors.grey,
                           ),
                         ),
-                      )
-                    ],
-                  ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: Text(
+                            "New to Amazon?",
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            height: 1,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                    CustomMainBotton(
+                        color: Colors.grey[400]!,
+                        isLoading: false,
+                        onPressed: () {},
+                        child: const FittedBox(
+                          child: Text(
+                            "Create an Amazon Account",
+                            softWrap: false,
+                            // overflow: null,
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                                letterSpacing: 0.6, color: Colors.black),
+                          ),
+                        ))
+                  ],
                 ),
-                CustomMainBotton(
-                    color: Colors.grey[400]!,
-                    isLoading: false,
-                    onPressed: () {},
-                    child: const FittedBox(
-                      child: Text(
-                        "Create an Amazon Account",
-                        softWrap: false,
-                        // overflow: null,
-                        textAlign: TextAlign.right,
-                        style: TextStyle(letterSpacing: 0.5),
-                      ),
-                    ))
-              ],
+              ),
             ),
           ),
         ),
