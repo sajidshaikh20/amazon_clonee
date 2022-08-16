@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:amazon_clonee/resources/authenticatio_method.dart';
 import 'package:amazon_clonee/screens/sign_in_screens.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';

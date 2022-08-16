@@ -5,4 +5,4 @@ class UserDetailsModel {
   Map<String, dynamic> getJson() => {'name': name, 'address': address};
 }
 
-UserDetailsModel sajid = UserDetailsModel(name: "sajid", address: "dewas");
+// UserDetailsModel sajid = UserDetailsModel(name: "sajid", address: "dewasz");

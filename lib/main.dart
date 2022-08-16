@@ -1,3 +1,4 @@
+import 'package:amazon_clonee/layout/screen_layout.dart';
 import 'package:amazon_clonee/screens/sign_in_screens.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -43,11 +44,7 @@ class MyApp extends StatelessWidget {
               );
             } else if (user.hasData) {
               // FirebaseAuth.instance.signOut();
-              return ElevatedButton(
-                  onPressed: () {
-                    FirebaseAuth.instance.signOut();
-                  },
-                  child: const Text("sign out"));
+              return ScreenLayout();
             } else {
               return const SignInScreen();
             }

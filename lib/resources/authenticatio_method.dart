@@ -1,3 +1,4 @@
+import 'package:amazon_clonee/model/user_details.dart';
 import 'package:amazon_clonee/resources/cloudfirestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -18,8 +19,8 @@ class AuthenticationMethods {
       try {
         await firebaseAuth.createUserWithEmailAndPassword(
             email: email, password: password);
-        await cloudFirestoreClass.uploadNameAndAddressToDatabase(
-            name: name, address: address);
+        UserDetailsModel user = UserDetailsModel(name: name, address: address);
+        await cloudFirestoreClass.uploadNameAndAddressToDatabase(user: user);
         output = "success";
       } on FirebaseAuthException catch (e) {
         output = e.message.toString();
