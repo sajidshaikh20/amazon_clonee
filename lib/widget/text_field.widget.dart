@@ -68,6 +68,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           child: TextField(
             focusNode: focusNode,
             obscureText: widget.obscureText,
+            controller: widget.controller,
             maxLines: 1,
             decoration: InputDecoration(
                 fillColor: Colors.white,

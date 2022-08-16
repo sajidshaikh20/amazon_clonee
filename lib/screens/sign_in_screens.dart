@@ -1,3 +1,4 @@
+import 'package:amazon_clonee/resources/authenticatio_method.dart';
 import 'package:amazon_clonee/screens/sign_up_screens.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:amazon_clonee/utils/constant.dart';
@@ -16,6 +17,7 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  AuthenticationMethods authenticationMethods = AuthenticationMethods();
   @override
   void dispose() {
     super.dispose();
@@ -78,7 +80,19 @@ class _SignInScreenState extends State<SignInScreen> {
                             child: CustomMainBotton(
                               color: yellowColor,
                               isLoading: false,
-                              onPressed: () {},
+                              onPressed: () async {
+                                String output =
+                                    await authenticationMethods.signInUser(
+                                        email: emailController.text,
+                                        password: passwordController.text);
+                                if (output == "success") {
+                                  //function
+                                } else {
+                                  //erir
+                                  Utils().showSnackBar(
+                                      context: context, content: output);
+                                }
+                              },
                               child: const Text(
                                 "Sign In",
                                 style: TextStyle(
@@ -118,7 +132,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         color: Colors.grey[400]!,
                         isLoading: false,
                         onPressed: () {
-                          Navigator.push(context,
+                          Navigator.pushReplacement(context,
                               MaterialPageRoute(builder: (context) {
                             return const SignUpScreen();
                           }));

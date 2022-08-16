@@ -1,3 +1,7 @@
+import 'dart:developer';
+
+import 'package:amazon_clonee/resources/authenticatio_method.dart';
+import 'package:amazon_clonee/screens/sign_in_screens.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:amazon_clonee/utils/constant.dart';
 import 'package:amazon_clonee/utils/utils.dart';
@@ -18,6 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController addressController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  AuthenticationMethods authenticationMethods = AuthenticationMethods();
   @override
   void dispose() {
     super.dispose();
@@ -70,21 +75,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                               TextFieldWidget(
                                 title: "Name",
-                                controller: emailController,
+                                controller: nameController,
                                 obscureText: false,
                                 hintText: "Enter your Name",
+                              ),
+                              TextFieldWidget(
+                                title: "Address",
+                                controller: addressController,
+                                obscureText: false,
+                                hintText: "Enter your Address",
                               ),
                               TextFieldWidget(
                                 title: "Emails",
                                 controller: emailController,
                                 obscureText: false,
                                 hintText: "Enter your emails",
-                              ),
-                              TextFieldWidget(
-                                title: "Address",
-                                controller: emailController,
-                                obscureText: false,
-                                hintText: "Enter your Address",
                               ),
                               TextFieldWidget(
                                 title: "Password",
@@ -97,7 +102,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 child: CustomMainBotton(
                                   color: yellowColor,
                                   isLoading: false,
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    String output =
+                                        await authenticationMethods.signUpUser(
+                                            name: nameController.text,
+                                            address: addressController.text,
+                                            email: emailController.text,
+                                            password: passwordController.text);
+                                    if (output == "success") {
+                                      log("doing next step");
+                                    } else {
+                                      //error
+                                      Utils().showSnackBar(
+                                          context: context, content: output);
+                                    }
+                                  },
                                   child: const Text(
                                     "Sign Up",
                                     style: TextStyle(
@@ -115,7 +134,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         color: Colors.grey[400]!,
                         isLoading: false,
                         onPressed: () {
-                          Navigator.pop(context);
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const SignInScreen();
+                          }));
                         },
                         child: const FittedBox(
                           child: Text(

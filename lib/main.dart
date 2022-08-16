@@ -1,5 +1,6 @@
 import 'package:amazon_clonee/screens/sign_in_screens.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,22 @@ class MyApp extends StatelessWidget {
         theme: ThemeData.light().copyWith(
           scaffoldBackgroundColor: backgroundColor,
         ),
-        home: const Scaffold(body: SignInScreen()));
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, AsyncSnapshot<User?> user) {
+            if (user.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.orange,
+                ),
+              );
+            } else if (user.hasData) {
+              // FirebaseAuth.instance.signOut();
+              return const Text("signed in");
+            } else {
+              return const SignInScreen();
+            }
+          },
+        ));
   }
 }
