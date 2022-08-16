@@ -43,7 +43,11 @@ class MyApp extends StatelessWidget {
               );
             } else if (user.hasData) {
               // FirebaseAuth.instance.signOut();
-              return const Text("signed in");
+              return ElevatedButton(
+                  onPressed: () {
+                    FirebaseAuth.instance.signOut();
+                  },
+                  child: const Text("sign out"));
             } else {
               return const SignInScreen();
             }

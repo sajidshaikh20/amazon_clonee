@@ -21,7 +21,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  bool isLoading = false;
   AuthenticationMethods authenticationMethods = AuthenticationMethods();
   @override
   void dispose() {
@@ -101,16 +101,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 alignment: Alignment.center,
                                 child: CustomMainBotton(
                                   color: yellowColor,
-                                  isLoading: false,
+                                  isLoading: isLoading,
                                   onPressed: () async {
+                                    setState(() {
+                                      isLoading = true;
+                                    });
                                     String output =
                                         await authenticationMethods.signUpUser(
                                             name: nameController.text,
                                             address: addressController.text,
                                             email: emailController.text,
                                             password: passwordController.text);
+                                    setState(() {
+                                      isLoading = false;
+                                    });
                                     if (output == "success") {
-                                      log("doing next step");
+                                      // log("doing next step");
+                                      // ignore: use_build_context_synchronously
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) =>
+                                                  const SignInScreen()));
                                     } else {
                                       //error
                                       Utils().showSnackBar(
