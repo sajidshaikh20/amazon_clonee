@@ -1,3 +1,4 @@
+import 'package:amazon_clonee/widget/banner_add_widget.dart';
 import 'package:amazon_clonee/widget/categories_horizontal_list_view_bar.dart';
 import 'package:amazon_clonee/widget/search_bar_widget.dart';
 import 'package:flutter/material.dart';
@@ -21,9 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: [
-            CategoriesHorizonatalViewBar(),
-          ],
+          children: [CategoriesHorizonatalViewBar(), BannerAdWidget()],
         ),
       ),
     );
