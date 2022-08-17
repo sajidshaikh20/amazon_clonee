@@ -21,52 +21,56 @@ class SearchBarWidget extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     Size screenSize = Utils().getScreenSize();
-    return Container(
-      // color: Colors.pink,
-      height: kAppBarHeight,
-      decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: backgroundGradient,
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight)),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        hasBackBotton
-            ? IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(Icons.arrow_back))
-            : Container(),
-        SizedBox(
-            width: screenSize.width * 0.7,
-            child: Container(
-              decoration: BoxDecoration(boxShadow: [
-                BoxShadow(
-                    color: Colors.black.withOpacity(0.3),
-                    blurRadius: 8,
-                    spreadRadius: 1,
-                    offset: const Offset(0, 5))
-              ]),
-              child: TextField(
-                readOnly: isReadOnly,
-                onTap: () {
-                  if (isReadOnly) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SearchScreen()));
-                  }
-                },
-                decoration: InputDecoration(
-                    hintText: "Search for something in Amazon",
-                    fillColor: Colors.white,
-                    filled: true,
-                    border: border,
-                    focusedBorder: border),
-              ),
-            )),
-        IconButton(onPressed: () {}, icon: const Icon(Icons.mic_none_outlined))
-      ]),
+    return SafeArea(
+      child: Container(
+        // color: Colors.pink,
+
+        height: kAppBarHeight,
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: backgroundGradient,
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight)),
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          hasBackBotton
+              ? IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(Icons.arrow_back))
+              : Container(),
+          SizedBox(
+              width: screenSize.width * 0.7,
+              child: Container(
+                decoration: BoxDecoration(boxShadow: [
+                  BoxShadow(
+                      color: Colors.black.withOpacity(0.3),
+                      blurRadius: 8,
+                      spreadRadius: 1,
+                      offset: const Offset(0, 5))
+                ]),
+                child: TextField(
+                  readOnly: isReadOnly,
+                  onTap: () {
+                    if (isReadOnly) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SearchScreen()));
+                    }
+                  },
+                  decoration: InputDecoration(
+                      hintText: "Search for something in Amazon",
+                      fillColor: Colors.white,
+                      filled: true,
+                      border: border,
+                      focusedBorder: border),
+                ),
+              )),
+          IconButton(
+              onPressed: () {}, icon: const Icon(Icons.mic_none_outlined))
+        ]),
+      ),
     );
   }
 }
