@@ -1,5 +1,6 @@
 import 'package:amazon_clonee/screens/acount_screens.dart';
 import 'package:amazon_clonee/screens/home_screen.dart';
+import 'package:amazon_clonee/widget/simple_product_widget.dart';
 import 'package:flutter/material.dart';
 
 const double kAppBarHeight = 80;
@@ -67,3 +68,22 @@ const List<String> adItemNames = [
 //Dont even attemp to scroll to the end of this manually lmao
 const String amazonLogo =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png";
+
+List<Widget> testChildren = [
+  SimpleProductWidget(
+      url: "https://m.media-amazon.com/images/I/51QISbJp5-L._SX3000_.jpg"),
+  SimpleProductWidget(
+      url: "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png"),
+  SimpleProductWidget(
+      url: "https://m.media-amazon.com/images/I/51QISbJp5-L._SX3000_.jpg"),
+  SimpleProductWidget(
+      url: "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png"),
+  SimpleProductWidget(
+      url: "https://m.media-amazon.com/images/I/51QISbJp5-L._SX3000_.jpg"),
+  SimpleProductWidget(
+      url: "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png"),
+  SimpleProductWidget(
+      url: "https://m.media-amazon.com/images/I/51QISbJp5-L._SX3000_.jpg"),
+  SimpleProductWidget(
+      url: "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png"),
+];
