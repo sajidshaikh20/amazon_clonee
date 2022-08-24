@@ -1,5 +1,6 @@
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:amazon_clonee/utils/utils.dart';
+import 'package:amazon_clonee/widget/custom_square_botton.dart';
 import 'package:amazon_clonee/widget/product_indormation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -31,7 +32,7 @@ class CartItemsWidget extends StatelessWidget {
                         "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png"),
                   ),
                 ),
-                ProductInformationWidget(
+                const ProductInformationWidget(
                     productName:
                         "something something cleans stuff pink in color",
                     cost: 1000.3,
@@ -41,8 +42,24 @@ class CartItemsWidget extends StatelessWidget {
           ),
           Expanded(
             flex: 1,
-            child: Container(
-              color: Colors.green,
+            child: Row(
+              children: [
+                CustomSquareButton(
+                    onPressed: () {},
+                    color: Colors.grey[500]!,
+                    dimension: 50,
+                    child: const Icon(Icons.remove)),
+                CustomSquareButton(
+                    onPressed: () {},
+                    color: Colors.grey[200]!,
+                    dimension: 50,
+                    child: const Text("0")),
+                CustomSquareButton(
+                    onPressed: () {},
+                    color: Colors.grey[500]!,
+                    dimension: 50,
+                    child: const Icon(Icons.add)),
+              ],
             ),
           ),
           Expanded(

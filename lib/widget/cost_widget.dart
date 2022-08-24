@@ -12,6 +12,7 @@ class CostWiddddddget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
+      // mainAxisAlignment: mai,
       children: [
         Text(
           "₹",
