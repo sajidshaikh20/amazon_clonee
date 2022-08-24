@@ -25,13 +25,16 @@ class CartItemsWidget extends StatelessWidget {
               children: [
                 SizedBox(
                   width: screeSize.width / 3,
-                  child: Image.network(
-                      "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png"),
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Image.network(
+                        "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png"),
+                  ),
                 ),
-                const ProductInformationWidget(
+                ProductInformationWidget(
                     productName:
                         "something something cleans stuff pink in color",
-                    cost: 1000,
+                    cost: 1000.3,
                     seller: "sajid")
               ],
             ),

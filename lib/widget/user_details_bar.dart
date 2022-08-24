@@ -19,7 +19,7 @@ class UserDetailsBar extends StatelessWidget {
       child: Container(
         height: kAppBarHeight / 2,
         width: screenSize.width,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: lightBackgroundGradient,
                 begin: Alignment.centerLeft,
