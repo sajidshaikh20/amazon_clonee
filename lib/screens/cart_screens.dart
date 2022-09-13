@@ -1,3 +1,4 @@
+import 'package:amazon_clonee/model/product_model.dart';
 import 'package:amazon_clonee/model/user_details.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:amazon_clonee/widget/cart_item.dart';
@@ -48,7 +49,19 @@ class _CartScreenState extends State<CartScreen> {
               child: ListView.builder(
                   itemCount: 5,
                   itemBuilder: (context, index) {
-                    return const CartItemsWidget();
+                    return CartItemsWidget(
+                      product: ProductModel(
+                          url:
+                              "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png",
+                          productName: "sajid_bhuru",
+                          cost: 9744646,
+                          discount: 0,
+                          uid: "sachin",
+                          sellerName: "kavita",
+                          sellerUid: "15ca16",
+                          rating: 1,
+                          noOfRating: 5),
+                    );
                   }),
             )
           ],

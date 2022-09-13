@@ -1,17 +1,20 @@
+import 'package:amazon_clonee/model/product_model.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:amazon_clonee/utils/utils.dart';
 import 'package:amazon_clonee/widget/custom_square_botton.dart';
+import 'package:amazon_clonee/widget/custon_simple_rounded_button.dart';
 import 'package:amazon_clonee/widget/product_indormation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class CartItemsWidget extends StatelessWidget {
-  const CartItemsWidget({Key? key}) : super(key: key);
+  final ProductModel product;
+  const CartItemsWidget({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size screeSize = Utils().getScreenSize();
     return Container(
+      padding: const EdgeInsets.all(18),
       height: screeSize.height / 2,
       width: screeSize.width,
       decoration: const BoxDecoration(
@@ -20,7 +23,7 @@ class CartItemsWidget extends StatelessWidget {
       child: Column(
         children: [
           Expanded(
-            flex: 5,
+            flex: 3,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -28,15 +31,15 @@ class CartItemsWidget extends StatelessWidget {
                   width: screeSize.width / 3,
                   child: Align(
                     alignment: Alignment.topCenter,
-                    child: Image.network(
-                        "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png"),
+                    child: Center(
+                      child: Image.network(product.url),
+                    ),
                   ),
                 ),
-                const ProductInformationWidget(
-                    productName:
-                        "something something cleans stuff pink in color",
-                    cost: 1000.3,
-                    seller: "sajid")
+                ProductInformationWidget(
+                    productName: product.productName,
+                    cost: product.cost,
+                    seller: product.sellerName)
               ],
             ),
           ),
@@ -46,28 +49,55 @@ class CartItemsWidget extends StatelessWidget {
               children: [
                 CustomSquareButton(
                     onPressed: () {},
-                    color: Colors.grey[500]!,
-                    dimension: 50,
+                    color: backgroundColor,
+                    dimension: 40,
                     child: const Icon(Icons.remove)),
                 CustomSquareButton(
                     onPressed: () {},
-                    color: Colors.grey[200]!,
-                    dimension: 50,
-                    child: const Text("0")),
+                    color: Colors.white,
+                    dimension: 40,
+                    child: const Text(
+                      "0",
+                      style: TextStyle(color: activeCyancolor),
+                    )),
                 CustomSquareButton(
                     onPressed: () {},
-                    color: Colors.grey[500]!,
-                    dimension: 50,
+                    color: backgroundColor,
+                    dimension: 40,
                     child: const Icon(Icons.add)),
               ],
             ),
           ),
           Expanded(
-            flex: 1,
-            child: Container(
-              color: Colors.yellow,
-            ),
-          ),
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      children: [
+                        CustonSimpleButton(onPressed: () {}, text: "Delete"),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        CustonSimpleButton(
+                            onPressed: () {}, text: "Save for later"),
+                      ],
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 3),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          " see more of this",
+                          style: TextStyle(color: activeCyancolor),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )),
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:amazon_clonee/screens/acount_screens.dart';
 import 'package:amazon_clonee/screens/cart_screens.dart';
 import 'package:amazon_clonee/screens/home_screen.dart';
+import 'package:amazon_clonee/screens/more_screen.dart';
 import 'package:amazon_clonee/widget/simple_product_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -25,9 +26,7 @@ const List<Widget> screens = [
   HomeScreen(),
   AccountScreen(),
   CartScreen(),
-  Center(
-    child: Text("more screen"),
-  ),
+  MoreScreen(),
 ];
 
 const List<String> categoryLogos = [

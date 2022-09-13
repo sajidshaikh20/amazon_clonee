@@ -18,20 +18,27 @@ class ProductInformationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size screenSize = Utils().getScreenSize();
+    SizedBox spacething = const SizedBox(
+      height: 5,
+    );
     return SizedBox(
       width: screenSize.width / 2,
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text(
-            productName,
-            style: const TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 15,
-                letterSpacing: 0.9,
-                overflow: TextOverflow.ellipsis),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              productName,
+              style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 13.5,
+                  letterSpacing: 0.9,
+                  overflow: TextOverflow.visible),
+            ),
           ),
+          spacething,
           Align(
             alignment: Alignment.centerLeft,
             child: Padding(
@@ -39,6 +46,7 @@ class ProductInformationWidget extends StatelessWidget {
               child: CostWiddddddget(color: Colors.black, cost: cost),
             ),
           ),
+          spacething,
           Align(
             alignment: Alignment.centerLeft,
             child: RichText(
