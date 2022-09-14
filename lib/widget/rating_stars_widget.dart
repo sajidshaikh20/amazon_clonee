@@ -20,8 +20,11 @@ class RatingStarwidget extends StatelessWidget {
             ));
     }
 
-    return Row(
-      children: childern,
+    return Expanded(
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: childern,
+      ),
     );
   }
 }

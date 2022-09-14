@@ -26,19 +26,19 @@ class ResultScreen extends StatelessWidget {
             child: GridView.builder(
                 itemCount: 9,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3, childAspectRatio: 2 / 3),
+                    crossAxisCount: 3, childAspectRatio: 2 / 4),
                 itemBuilder: (context, index) {
                   return ResultWidget(
                     product: ProductModel(
                         url:
                             "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png",
-                        productName: "sajid_bhuru",
+                        productName: "sajid_bhai",
                         cost: 100,
                         discount: 0,
                         uid: "sachin",
                         sellerName: "kavita",
                         sellerUid: "15ca16",
-                        rating: 4,
+                        rating: 2,
                         noOfRating: 5),
                   );
                 }),
