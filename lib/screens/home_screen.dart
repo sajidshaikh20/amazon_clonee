@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
             controller: controller,
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: kAppBarHeight / 2,
                 ),
                 CategoriesHorizonatalViewBar(),

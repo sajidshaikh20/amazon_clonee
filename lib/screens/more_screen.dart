@@ -16,8 +16,8 @@ class MoreScreen extends StatelessWidget {
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 childAspectRatio: 2.2 / 3.5,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10),
+                mainAxisSpacing: 15,
+                crossAxisSpacing: 15),
             itemCount: categoriesList.length,
             itemBuilder: (context, index) => Categorywidget(index: index)),
       ),
