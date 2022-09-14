@@ -1,6 +1,7 @@
 import 'package:amazon_clonee/model/product_model.dart';
 import 'package:amazon_clonee/utils/utils.dart';
 import 'package:amazon_clonee/widget/cost_widget.dart';
+import 'package:amazon_clonee/widget/rating_stars_widget.dart';
 import 'package:flutter/material.dart';
 
 class ResultWidget extends StatelessWidget {
@@ -17,8 +18,9 @@ class ResultWidget extends StatelessWidget {
           child: Image.network(product.url),
         ),
         Text(product.productName),
+        RatingStarwidget(rating: product.rating),
         CostWiddddddget(
-            color: Color.fromARGB(255, 92, 9, 3), cost: product.cost),
+            color: const Color.fromARGB(255, 92, 9, 3), cost: product.cost),
       ],
     );
   }
