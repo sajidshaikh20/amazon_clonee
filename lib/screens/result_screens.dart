@@ -13,14 +13,18 @@ class ResultScreen extends StatelessWidget {
       appBar: SearchBarWidget(isReadOnly: false, hasBackBotton: true),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: RichText(
-                text: TextSpan(children: [
-              const TextSpan(
-                  text: "showing results for", style: TextStyle(fontSize: 17)),
-              TextSpan(text: query, style: const TextStyle(fontSize: 17)),
-            ])),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: RichText(
+                  text: TextSpan(children: [
+                const TextSpan(
+                    text: "showing results for",
+                    style: TextStyle(fontSize: 17)),
+                TextSpan(text: query, style: const TextStyle(fontSize: 17)),
+              ])),
+            ),
           ),
           Expanded(
             child: GridView.builder(

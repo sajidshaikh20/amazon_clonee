@@ -45,8 +45,7 @@ class MyApp extends StatelessWidget {
               );
             } else if (user.hasData) {
               // FirebaseAuth.instance.signOut();
-              // return ScreenLayout();
-              return ResultScreen(query: "shgkf");
+              return const ScreenLayout();
             } else {
               return const SignInScreen();
             }
