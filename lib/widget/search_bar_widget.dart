@@ -1,3 +1,4 @@
+import 'package:amazon_clonee/screens/result_screens.dart';
 import 'package:amazon_clonee/screens/search_screen.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:amazon_clonee/utils/constant.dart';
@@ -56,7 +57,7 @@ class SearchBarWidget extends StatelessWidget with PreferredSizeWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const SearchScreen()));
+                            builder: (context) => ResultScreen(query: query)));
                   },
                   readOnly: isReadOnly,
                   onTap: () {
