@@ -1,8 +1,13 @@
+import 'dart:ui';
+
 import 'package:amazon_clonee/model/product_model.dart';
 import 'package:amazon_clonee/model/user_details.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:amazon_clonee/utils/constant.dart';
 import 'package:amazon_clonee/utils/utils.dart';
+import 'package:amazon_clonee/widget/cost_widget.dart';
+import 'package:amazon_clonee/widget/custom_main_botton.dart';
+import 'package:amazon_clonee/widget/custon_simple_rounded_button.dart';
 import 'package:amazon_clonee/widget/rating_stars_widget.dart';
 import 'package:amazon_clonee/widget/search_bar_widget.dart';
 import 'package:amazon_clonee/widget/user_details_bar.dart';
@@ -19,7 +24,10 @@ class ProductScreenState extends StatefulWidget {
 class _ProductScreenStateState extends State<ProductScreenState> {
   @override
   Widget build(BuildContext context) {
-    // Size screenSize = Utils().getScreenSize();
+    SizedBox spaceThingy = const SizedBox(
+      height: 15,
+    );
+    Size screenSize = Utils().getScreenSize();
     return SafeArea(
         child: Scaffold(
       appBar: SearchBarWidget(isReadOnly: true, hasBackBotton: true),
@@ -54,14 +62,44 @@ class _ProductScreenStateState extends State<ProductScreenState> {
                           Text(widget.productModel.productName)
                         ],
                       ),
-                      // const Spacer(),
-                      // const SizedBox(
-                      //   width: 110,
-                      // ),
-                      RatingStarwidget(rating: widget.productModel.rating)
+                      RatingStarwidget(rating: widget.productModel.rating),
                     ],
                   ),
-                )
+                ),
+                // Padding(
+                //   padding: const EdgeInsets.all(15),
+                //   child: Container(
+                //     height: screenSize.height / 3,
+                //     child: FittedBox(
+                //         child: Image.network(widget.productModel.url)),
+                //   ),
+                // ),
+                SizedBox(
+                  height: screenSize.height / 3,
+                  child: SizedBox.expand(
+                      child: FittedBox(
+                          child: Image.network(widget.productModel.url))),
+                ),
+                spaceThingy,
+                CostWiddddddget(
+                    color: Colors.black, cost: widget.productModel.cost),
+                spaceThingy,
+                CustomMainBotton(
+                    color: Colors.orange,
+                    isLoading: false,
+                    onPressed: () {},
+                    child: const Text("Buy Now",
+                        style: TextStyle(color: Colors.black))),
+                spaceThingy,
+                CustomMainBotton(
+                    color: Colors.yellow,
+                    isLoading: false,
+                    onPressed: () {},
+                    child: const Text("Add to cart",
+                        style: TextStyle(color: Colors.black))),
+                spaceThingy,
+                CustonSimpleButton(
+                    onPressed: () {}, text: "Add to review for this product"),
               ],
             ),
           )),

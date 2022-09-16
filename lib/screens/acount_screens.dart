@@ -27,7 +27,7 @@ class _AccountScreenState extends State<AccountScreen> {
             width: screeSize.width,
             child: Column(
               children: [
-                IntroductionWidgetAccounScreen(),
+         const       IntroductionWidgetAccounScreen(),
                 CustomMainBotton(
                     // ignore: sort_child_properties_last
                     child: const Text(

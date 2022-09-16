@@ -52,8 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(
                   height: kAppBarHeight / 2,
                 ),
-                CategoriesHorizonatalViewBar(),
-                BannerAdWidget(),
+  CategoriesHorizonatalViewBar(),
+   BannerAdWidget(),
                 ProductShowcaseListView(
                     title: "UP to 70% off", children: testChildren),
                 ProductShowcaseListView(
