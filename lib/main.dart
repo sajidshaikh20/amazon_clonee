@@ -1,4 +1,6 @@
 import 'package:amazon_clonee/layout/screen_layout.dart';
+import 'package:amazon_clonee/model/product_model.dart';
+import 'package:amazon_clonee/screens/product_screen.dart';
 import 'package:amazon_clonee/screens/result_screens.dart';
 import 'package:amazon_clonee/screens/sign_in_screens.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
@@ -45,7 +47,20 @@ class MyApp extends StatelessWidget {
               );
             } else if (user.hasData) {
               // FirebaseAuth.instance.signOut();
-              return const ScreenLayout();
+              // return const ScreenLayout();
+              return ProductScreenState(
+                productModel: ProductModel(
+                    url:
+                        "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png",
+                    productName: "sajid_bhuru",
+                    cost: 9744646,
+                    discount: 0,
+                    uid: "sachin",
+                    sellerName: "kavita",
+                    sellerUid: "15ca16",
+                    rating: 1,
+                    noOfRating: 5),
+              );
             } else {
               return const SignInScreen();
             }
