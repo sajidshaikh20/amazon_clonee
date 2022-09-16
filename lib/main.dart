@@ -47,20 +47,7 @@ class MyApp extends StatelessWidget {
               );
             } else if (user.hasData) {
               // FirebaseAuth.instance.signOut();
-              // return const ScreenLayout();
-              return ProductScreenState(
-                productModel: ProductModel(
-                    url:
-                        "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png",
-                    productName: "sajid_bhuru",
-                    cost: 9744646,
-                    discount: 0,
-                    uid: "sachin",
-                    sellerName: "kavita",
-                    sellerUid: "15ca16",
-                    rating: 1,
-                    noOfRating: 5),
-              );
+              return const ScreenLayout();
             } else {
               return const SignInScreen();
             }
