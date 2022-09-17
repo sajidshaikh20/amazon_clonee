@@ -12,7 +12,7 @@ class SimpleProductWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (() {
-        Navigator.pop(
+        Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) =>
