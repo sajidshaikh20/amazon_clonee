@@ -1,4 +1,5 @@
 import 'package:amazon_clonee/model/product_model.dart';
+import 'package:amazon_clonee/screens/product_screen.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:amazon_clonee/utils/utils.dart';
 import 'package:amazon_clonee/widget/custom_square_botton.dart';
@@ -23,24 +24,33 @@ class CartItemsWidget extends StatelessWidget {
       child: Column(
         children: [
           Expanded(
-            flex: 3,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: screeSize.width / 3,
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Center(
-                      child: Image.network(product.url),
+            // flex: 3,
+            child: GestureDetector(
+              onTap: (() {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ProductScreenState(
+                    productModel: product,
+                  );
+                }));
+              }),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: screeSize.width / 3,
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Center(
+                        child: Image.network(product.url),
+                      ),
                     ),
                   ),
-                ),
-                ProductInformationWidget(
-                    productName: product.productName,
-                    cost: product.cost,
-                    seller: product.sellerName)
-              ],
+                  ProductInformationWidget(
+                      productName: product.productName,
+                      cost: product.cost,
+                      seller: product.sellerName)
+                ],
+              ),
             ),
           ),
           Expanded(

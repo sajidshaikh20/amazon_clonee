@@ -3,7 +3,6 @@ import 'package:amazon_clonee/screens/product_screen.dart';
 import 'package:flutter/material.dart';
 
 class SimpleProductWidget extends StatelessWidget {
-  // final String url;
   final ProductModel productModel;
   const SimpleProductWidget({Key? key, required this.productModel})
       : super(key: key);

@@ -8,6 +8,7 @@ import 'package:amazon_clonee/widget/cost_widget.dart';
 import 'package:amazon_clonee/widget/custom_main_botton.dart';
 import 'package:amazon_clonee/widget/custon_simple_rounded_button.dart';
 import 'package:amazon_clonee/widget/rating_stars_widget.dart';
+import 'package:amazon_clonee/widget/review_dialog.dart';
 import 'package:amazon_clonee/widget/review_widget.dart';
 import 'package:amazon_clonee/widget/search_bar_widget.dart';
 import 'package:amazon_clonee/widget/user_details_bar.dart';
@@ -99,7 +100,12 @@ class _ProductScreenStateState extends State<ProductScreenState> {
                         style: TextStyle(color: Colors.black))),
                 spaceThingy,
                 CustonSimpleButton(
-                    onPressed: () {}, text: "Add to review for this product"),
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) => const ReviewDialog());
+                    },
+                    text: "Add to review for this product"),
                 SizedBox(
                   height: screenSize.height,
                   child: ListView.builder(
@@ -108,8 +114,8 @@ class _ProductScreenStateState extends State<ProductScreenState> {
                         return ReviewWidget(
                             review: ReviewModel(
                                 senderName: "sachin",
-                                description: "very good product",
-                                rating: 3));
+                                description: "Very good product",
+                                rating: 5));
                       })),
                 )
               ],

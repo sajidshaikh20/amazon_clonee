@@ -102,7 +102,7 @@ List<Widget> testChildren = [
         uid: "sachin",
         sellerName: "kavita",
         sellerUid: "15ca16",
-        rating: 1,
+        rating: 0,
         noOfRating: 5),
   ),
   SimpleProductWidget(
@@ -147,4 +147,4 @@ List<Widget> testChildren = [
   // const SimpleProductWidget(
   //     url: "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png"),
 ];
-List<String> keyOfRating = ["Very bad", "Poor", "Average", "Excellent"];
+List<String> keyOfRating = ["Very bad", "Poor", "Average", "Good", "Excellent"];

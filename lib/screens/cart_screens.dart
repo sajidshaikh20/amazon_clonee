@@ -62,7 +62,7 @@ class _CartScreenState extends State<CartScreen> {
                               uid: "sachin",
                               sellerName: "kavita",
                               sellerUid: "15ca16",
-                              rating: 1,
+                              rating: 3,
                               noOfRating: 5),
                         );
                       }),
