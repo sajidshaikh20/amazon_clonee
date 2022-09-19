@@ -1,5 +1,8 @@
+import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:amazon_clonee/utils/utils.dart';
+import 'package:amazon_clonee/widget/custom_main_botton.dart';
 import 'package:amazon_clonee/widget/loading_widget.dart';
+import 'package:amazon_clonee/widget/text_field.widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +17,17 @@ class _SellScreenState extends State<SellScreen> {
   bool isLoading = false;
   int selected = 4;
   Uint8List? image;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController costController = TextEditingController();
+  // Expanded spaceThingy = Expanded(child: Container());
+
+  @override
+  void dispose() {
+    super.dispose();
+    nameController.dispose();
+    costController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size screensize = Utils().getScreenSize();
@@ -31,6 +45,7 @@ class _SellScreenState extends State<SellScreen> {
                     child: Center(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           image == null
                               ? Stack(
@@ -40,7 +55,15 @@ class _SellScreenState extends State<SellScreen> {
                                       height: screensize.height / 10,
                                     ),
                                     IconButton(
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          Uint8List? temp =
+                                              await Utils().pickImage();
+                                          if (temp != null) {
+                                            setState(() {
+                                              image = temp;
+                                            });
+                                          }
+                                        },
                                         icon: const Icon(Icons.file_upload))
                                   ],
                                 )
@@ -50,8 +73,116 @@ class _SellScreenState extends State<SellScreen> {
                                       image!,
                                       height: screensize.height / 10,
                                     ),
+                                    IconButton(
+                                        onPressed: () async {
+                                          Uint8List? temp =
+                                              await Utils().pickImage();
+                                          if (temp != null) {
+                                            setState(() {
+                                              image = temp;
+                                            });
+                                          }
+                                        },
+                                        icon: const Icon(Icons.file_upload))
                                   ],
                                 ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 25, vertical: 10),
+                            height: screensize.height * 0.7,
+                            width: screensize.width * 0.8,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey, width: 1),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                // const Text(
+                                //   "Item details",
+                                //   style: TextStyle(
+                                //       fontWeight: FontWeight.bold,
+                                //       fontSize: 23),
+                                // ),
+                                TextFieldWidget(
+                                    title: "Item Name",
+                                    controller: nameController,
+                                    obscureText: false,
+                                    hintText: "Enter the name of item"),
+                                TextFieldWidget(
+                                    title: "Cost",
+                                    controller: costController,
+                                    obscureText: false,
+                                    hintText: "Enter the cost of item"),
+                                const Text(
+                                  "Discount",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                ),
+                                ListTile(
+                                  title: Text("None"),
+                                  leading: Radio(
+                                      value: 1,
+                                      groupValue: selected,
+                                      onChanged: (int? i) {
+                                        setState(() {
+                                          selected = i!;
+                                        });
+                                      }),
+                                ),
+                                ListTile(
+                                  title: Text("70%"),
+                                  leading: Radio(
+                                      value: 2,
+                                      groupValue: selected,
+                                      onChanged: (int? i) {
+                                        setState(() {
+                                          selected = i!;
+                                        });
+                                      }),
+                                ),
+                                ListTile(
+                                  title: Text("60%"),
+                                  leading: Radio(
+                                      value: 3,
+                                      groupValue: selected,
+                                      onChanged: (int? i) {
+                                        setState(() {
+                                          selected = i!;
+                                        });
+                                      }),
+                                ),
+                                ListTile(
+                                  title: Text("50%"),
+                                  leading: Radio(
+                                      value: 4,
+                                      groupValue: selected,
+                                      onChanged: (int? i) {
+                                        setState(() {
+                                          selected = i!;
+                                        });
+                                      }),
+                                ),
+                              ],
+                            ),
+                          ),
+                          CustomMainBotton(
+                              color: yellowColor,
+                              isLoading: isLoading,
+                              onPressed: () {},
+                              child: const Text(
+                                "Sell",
+                                style: TextStyle(color: Colors.black),
+                              )),
+                          CustomMainBotton(
+                              color: Colors.grey[300]!,
+                              isLoading: false,
+                              onPressed: () {},
+                              child: const Text(
+                                "Back",
+                                style: TextStyle(color: Colors.black),
+                              )),
                         ],
                       ),
                     ),
