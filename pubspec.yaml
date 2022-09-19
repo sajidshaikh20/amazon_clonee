@@ -39,6 +39,7 @@ dependencies:
   cloud_firestore: ^3.4.4
   firebase_storage: ^10.3.5
   rating_dialog: ^2.0.4
+  provider: ^6.0.3
 
 dev_dependencies:
   flutter_test:
