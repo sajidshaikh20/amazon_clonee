@@ -18,6 +18,11 @@ class CloudFirestoreClass {
         .collection("users")
         .doc(firebaseAuth.currentUser!.uid)
         .get();
-    print(snap);
+
+    UserDetailsModel userModel = UserDetailsModel.getModelFromJson(
+      (snap.data() as dynamic),
+    );
+    // print(userModel.getJson());
+    return userModel;
   }
 }
