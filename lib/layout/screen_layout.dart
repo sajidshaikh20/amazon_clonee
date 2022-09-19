@@ -1,7 +1,3 @@
-// ignore_for_file: must_call_super
-
-import 'dart:ffi';
-
 import 'package:amazon_clonee/providers/user_details_provider.dart';
 import 'package:amazon_clonee/resources/cloudfirestore.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';

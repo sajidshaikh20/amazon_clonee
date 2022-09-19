@@ -7,8 +7,8 @@ class AuthenticationMethods {
   CloudFirestoreClass cloudFirestoreClass = CloudFirestoreClass();
   Future<String> signUpUser(
       {required String name,
-      required address,
-      required email,
+      required String address,
+      required String email,
       required String password}) async {
     name.trim();
     address.trim();

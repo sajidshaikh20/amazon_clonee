@@ -1,5 +1,6 @@
 import 'package:amazon_clonee/model/user_details.dart';
 import 'package:amazon_clonee/providers/user_details_provider.dart';
+import 'package:amazon_clonee/screens/sell_screen.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:amazon_clonee/utils/constant.dart';
 import 'package:amazon_clonee/utils/utils.dart';
@@ -48,7 +49,12 @@ class _AccountScreenState extends State<AccountScreen> {
                     ),
                     color: Colors.yellow,
                     isLoading: false,
-                    onPressed: () {}),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SellScreen()));
+                    }),
                 ProductShowcaseListView(
                     title: "Yours order", children: testChildren),
                 // ProductShowcaseListView(
@@ -93,7 +99,7 @@ class IntroductionWidgetAccounScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    dynamic userDetailsModel =
+    UserDetailsModel userDetailsModel =
         Provider.of<UserDetailsProvider>(context).userDetails;
     return Container(
       height: kAppBarHeight / 2,

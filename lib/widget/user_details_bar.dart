@@ -17,7 +17,8 @@ class UserDetailsBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size screenSize = Utils().getScreenSize();
-    dynamic userDetails = Provider.of<UserDetailsProvider>(context).userDetails;
+    UserDetailsModel userDetails =
+        Provider.of<UserDetailsProvider>(context).userDetails;
     return Positioned(
       top: -offset / 3,
       child: Container(

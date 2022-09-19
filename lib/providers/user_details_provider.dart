@@ -3,7 +3,7 @@ import 'package:amazon_clonee/resources/cloudfirestore.dart';
 import 'package:flutter/material.dart';
 
 class UserDetailsProvider with ChangeNotifier {
-  UserDetailsModel? userDetails;
+  UserDetailsModel userDetails;
   UserDetailsProvider()
       : userDetails = UserDetailsModel(name: "Loading", address: "Loading");
 
