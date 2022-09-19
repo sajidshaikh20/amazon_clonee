@@ -3,6 +3,7 @@ import 'package:amazon_clonee/model/product_model.dart';
 import 'package:amazon_clonee/providers/user_details_provider.dart';
 import 'package:amazon_clonee/screens/product_screen.dart';
 import 'package:amazon_clonee/screens/result_screens.dart';
+import 'package:amazon_clonee/screens/sell_screen.dart';
 import 'package:amazon_clonee/screens/sign_in_screens.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -51,7 +52,8 @@ class MyApp extends StatelessWidget {
                 );
               } else if (user.hasData) {
                 // FirebaseAuth.instance.signOut();
-                return const ScreenLayout();
+                // return const ScreenLayout();
+                return const SellScreen();
               } else {
                 return const SignInScreen();
               }

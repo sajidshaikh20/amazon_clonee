@@ -1,3 +1,5 @@
+import 'package:amazon_clonee/model/user_details.dart';
+import 'package:amazon_clonee/providers/user_details_provider.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:amazon_clonee/utils/constant.dart';
 import 'package:amazon_clonee/utils/utils.dart';
@@ -6,6 +8,7 @@ import 'package:amazon_clonee/widget/custom_main_botton.dart';
 import 'package:amazon_clonee/widget/product_showcase_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({Key? key}) : super(key: key);
@@ -27,11 +30,11 @@ class _AccountScreenState extends State<AccountScreen> {
             width: screeSize.width,
             child: Column(
               children: [
-         const       IntroductionWidgetAccounScreen(),
+                const IntroductionWidgetAccounScreen(),
                 CustomMainBotton(
                     // ignore: sort_child_properties_last
                     child: const Text(
-                      "Sign In",
+                      "Sign Out",
                       style: TextStyle(color: Colors.black),
                     ),
                     color: Colors.orange,
@@ -90,6 +93,8 @@ class IntroductionWidgetAccounScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    dynamic userDetailsModel =
+        Provider.of<UserDetailsProvider>(context).userDetails;
     return Container(
       height: kAppBarHeight / 2,
       decoration: const BoxDecoration(
@@ -114,10 +119,10 @@ class IntroductionWidgetAccounScreen extends StatelessWidget {
               child: RichText(
                   text: TextSpan(children: [
                 TextSpan(
-                    text: "hello",
+                    text: "Hello,",
                     style: TextStyle(color: Colors.grey[800], fontSize: 26)),
                 TextSpan(
-                    text: " Sajid",
+                    text: " ${userDetailsModel.name}",
                     style: TextStyle(
                         color: Colors.grey[800],
                         fontSize: 26,
