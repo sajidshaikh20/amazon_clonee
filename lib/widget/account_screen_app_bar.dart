@@ -12,7 +12,7 @@ class AccountScreenAppBar extends StatelessWidget with PreferredSizeWidget {
   final Size preferredSize;
   @override
   Widget build(BuildContext context) {
-    Size screenSize = Utils().getScreenSize();
+    // Size screenSize = Utils().getScreenSize();
     return SafeArea(
       child: Container(
         height: kAppBarHeight,

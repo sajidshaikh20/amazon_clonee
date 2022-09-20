@@ -18,8 +18,8 @@ class ReviewDialog extends StatelessWidget {
       submitButtonText: 'Send',
       commentHint: 'type here',
       onSubmitted: (RatingDialogResponse res) {
-        print(res.comment);
-        print(res.rating);
+        // print(res.comment);
+        // print(res.rating);
       },
     );
   }
