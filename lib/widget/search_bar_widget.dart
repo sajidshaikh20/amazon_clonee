@@ -35,54 +35,47 @@ class SearchBarWidget extends StatelessWidget with PreferredSizeWidget {
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           hasBackBotton
               ? IconButton(
-                  constraints: BoxConstraints(maxWidth: 35),
                   onPressed: () {
                     Navigator.pop(context);
                   },
                   icon: const Icon(Icons.arrow_back))
               : Container(),
-          Container(
-            width: screenSize.width * 0.78,
-            // height: 40.0,
-            decoration: BoxDecoration(boxShadow: [
-              BoxShadow(
-                  color: Colors.black.withOpacity(0.3),
-                  blurRadius: 8,
-                  spreadRadius: 1,
-                  offset: const Offset(0, 5))
-            ]),
-            child: TextField(
-              onSubmitted: (String query) {
-                // print("submited ${query} ");
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ResultScreen(query: query)));
-              },
-              readOnly: isReadOnly,
-              onTap: () {
-                if (isReadOnly) {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SearchScreen()));
-                }
-              },
-              decoration: InputDecoration(
-                  prefixIcon: Icon(
-                    Icons.search_rounded,
-                    color: Colors.black,
-                  ),
-                  hintText: "Search Amazon.in",
-                  hintStyle:
-                      TextStyle(fontWeight: FontWeight.w500, fontSize: 17.0),
-                  fillColor: Colors.white,
-                  filled: true,
-                  border: border,
-                  contentPadding: EdgeInsets.all(9.0),
-                  focusedBorder: border),
-            ),
-          ),
+          SizedBox(
+              width: screenSize.width * 0.7,
+              // height: screenSize.height * 0.5,
+              child: Container(
+                decoration: BoxDecoration(boxShadow: [
+                  BoxShadow(
+                      color: Colors.black.withOpacity(0.3),
+                      blurRadius: 8,
+                      spreadRadius: 1,
+                      offset: const Offset(0, 5))
+                ]),
+                child: TextField(
+                  onSubmitted: (String query) {
+                    // print("submited ${query} ");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ResultScreen(query: query)));
+                  },
+                  readOnly: isReadOnly,
+                  onTap: () {
+                    if (isReadOnly) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SearchScreen()));
+                    }
+                  },
+                  decoration: InputDecoration(
+                      hintText: "Search for something in Amazon",
+                      fillColor: Colors.white,
+                      filled: true,
+                      border: border,
+                      focusedBorder: border),
+                ),
+              )),
           IconButton(
               onPressed: () {}, icon: const Icon(Icons.mic_none_outlined))
         ]),
