@@ -1,4 +1,5 @@
 import 'package:amazon_clonee/model/product_model.dart';
+import 'package:amazon_clonee/model/review_model.dart';
 import 'package:amazon_clonee/model/user_details.dart';
 import 'package:amazon_clonee/utils/utils.dart';
 import 'package:amazon_clonee/widget/simple_product_widget.dart';
@@ -105,5 +106,15 @@ class CloudFirestoreClass {
       children.add(SimpleProductWidget(productModel: model));
     }
     return children;
+  }
+
+  Future uploadReviewToDatabase(
+      {required String productUid, required
+      ReviewModel model}) async {
+  await  firebaseFirestore
+        .collection("products")
+        .doc(productUid)
+        .collection("reviews")
+        .add(model.getJson());
   }
 }

@@ -69,15 +69,30 @@ class SearchBarWidget extends StatelessWidget with PreferredSizeWidget {
                     }
                   },
                   decoration: InputDecoration(
-                      hintText: "Search for something in Amazon",
-                      fillColor: Colors.white,
-                      filled: true,
-                      border: border,
-                      focusedBorder: border),
+                    prefixIcon: const Icon(
+                      Icons.search_rounded,
+                      color: Colors.black,
+                    ),
+                    hintText: "Search Amazon",
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: border,
+                    contentPadding: const EdgeInsets.all(12),
+                    focusedBorder: border,
+                    suffixIcon: const Icon(
+                      Icons.center_focus_strong_outlined,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
               )),
           IconButton(
-              onPressed: () {}, icon: const Icon(Icons.mic_none_outlined))
+            onPressed: () {},
+            iconSize: 30,
+            icon: const Icon(
+              Icons.mic_none_outlined,
+            ),
+          )
         ]),
       ),
     );
