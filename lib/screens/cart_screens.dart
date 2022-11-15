@@ -1,7 +1,9 @@
 import 'package:amazon_clonee/model/product_model.dart';
 import 'package:amazon_clonee/model/user_details.dart';
+import 'package:amazon_clonee/resources/cloudfirestore.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:amazon_clonee/utils/constant.dart';
+import 'package:amazon_clonee/utils/utils.dart';
 import 'package:amazon_clonee/widget/cart_item.dart';
 import 'package:amazon_clonee/widget/custom_main_botton.dart';
 import 'package:amazon_clonee/widget/search_bar_widget.dart';
@@ -35,21 +37,42 @@ class _CartScreenState extends State<CartScreen> {
                 ),
                 // ignore: sort_child_properties_last
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CustomMainBotton(
-                      // ignore: sort_child_properties_last
-                      child: const Text(
-                        "Proceed to by (n) items",
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
-                        // maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      color: yellowColor,
-                      isLoading: false,
-                      onPressed: () {}),
-                ),
+                    padding: const EdgeInsets.all(8.0),
+                    child: StreamBuilder(
+                        stream: FirebaseFirestore.instance
+                            .collection("users")
+                            .doc(FirebaseAuth.instance.currentUser!.uid)
+                            .collection("cart")
+                            .snapshots(),
+                        builder: (context,
+                            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                                snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CustomMainBotton(
+                                color: yellowColor,
+                                isLoading: true,
+                                onPressed: () {},
+                                child: const Text(
+                                  "Loading",
+                                ));
+                          } else {
+                            return CustomMainBotton(
+                                color: yellowColor,
+                                isLoading: false,
+                                onPressed: () async {
+                                  await CloudFirestoreClass()
+                                      .buyAllItemsInCart();
+                                  Utils().showSnackBar(
+                                      context: context, content: "Done");
+                                },
+                                child: Text(
+                                  "Proceed to buy (${snapshot.data!.docs.length})item",
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(color: Colors.black),
+                                ));
+                          }
+                        })),
                 Expanded(
                   child: StreamBuilder(
                     stream: FirebaseFirestore.instance

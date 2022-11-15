@@ -91,7 +91,10 @@ class _ProductScreenStateState extends State<ProductScreenState> {
                 CustomMainBotton(
                     color: Colors.orange,
                     isLoading: false,
-                    onPressed: () {},
+                    onPressed: () async {
+                      CloudFirestoreClass()
+                          .addProductToOrder(model: widget.productModel);
+                    },
                     child: const Text("Buy Now",
                         style: TextStyle(color: Colors.black))),
                 spaceThingy,

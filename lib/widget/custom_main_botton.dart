@@ -21,7 +21,7 @@ class CustomMainBotton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
             // ignore: deprecated_member_use
             primary: color,
-            fixedSize: Size(screeSize.width * 0.5, 40)),
+            fixedSize: Size(screeSize.width * 0.6, 40)),
         onPressed: onPressed,
         child: !isLoading
             ? child

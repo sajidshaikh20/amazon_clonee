@@ -1,4 +1,5 @@
 import 'package:amazon_clonee/model/product_model.dart';
+import 'package:amazon_clonee/resources/cloudfirestore.dart';
 import 'package:amazon_clonee/screens/product_screen.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:amazon_clonee/utils/utils.dart';
@@ -71,7 +72,19 @@ class CartItemsWidget extends StatelessWidget {
                       style: TextStyle(color: activeCyancolor),
                     )),
                 CustomSquareButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      await CloudFirestoreClass().addProductTocart(
+                          productModel: ProductModel(
+                              url: product.url,
+                              productName: product.productName,
+                              cost: product.cost,
+                              discount: product.discount,
+                              uid: Utils().getUid(),
+                              sellerName: product.sellerName,
+                              sellerUid: product.sellerUid,
+                              rating: product.rating,
+                              noOfRating: product.noOfRating));
+                    },
                     color: backgroundColor,
                     dimension: 40,
                     child: const Icon(Icons.add)),
@@ -87,7 +100,12 @@ class CartItemsWidget extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        CustonSimpleButton(onPressed: () {}, text: "Delete"),
+                        CustonSimpleButton(
+                            onPressed: () async {
+                              CloudFirestoreClass()
+                                  .deleteProductFromCart(uid: product.uid);
+                            },
+                            text: "Delete"),
                         const SizedBox(
                           width: 5,
                         ),

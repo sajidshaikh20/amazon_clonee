@@ -1,3 +1,4 @@
+import 'package:amazon_clonee/model/product_model.dart';
 import 'package:amazon_clonee/model/user_details.dart';
 import 'package:amazon_clonee/providers/user_details_provider.dart';
 import 'package:amazon_clonee/screens/sell_screen.dart';
@@ -7,6 +8,9 @@ import 'package:amazon_clonee/utils/utils.dart';
 import 'package:amazon_clonee/widget/account_screen_app_bar.dart';
 import 'package:amazon_clonee/widget/custom_main_botton.dart';
 import 'package:amazon_clonee/widget/product_showcase_list_view.dart';
+import 'package:amazon_clonee/widget/simple_product_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +23,8 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
+  // List<Widget>? yourOrders;
+
   @override
   Widget build(BuildContext context) {
     Size screeSize = Utils().getScreenSize();
@@ -55,10 +61,29 @@ class _AccountScreenState extends State<AccountScreen> {
                           MaterialPageRoute(
                               builder: (context) => const SellScreen()));
                     }),
-                ProductShowcaseListView(
-                    title: "Yours order", children: testChildren),
-                // ProductShowcaseListView(
-                //     title: "Yours order", children: testChildren),
+                FutureBuilder(
+                    future: FirebaseFirestore.instance
+                        .collection("users")
+                        .doc(FirebaseAuth.instance.currentUser!.uid)
+                        .collection("orders")
+                        .get(),
+                    builder: (context,
+                        AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                            snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Container();
+                      } else {
+                        List<Widget> children = [];
+                        for (int i = 0; i < snapshot.data!.docs.length; i++) {
+                          ProductModel model = ProductModel.getModelFromJson(
+                              json: snapshot.data!.docs[i].data());
+                          children
+                              .add(SimpleProductWidget(productModel: model));
+                        }
+                        return ProductShowcaseListView(
+                            title: "Your oders", children: children);
+                      }
+                    }),
                 const Padding(
                   padding: EdgeInsets.all(15),
                   child: Align(
