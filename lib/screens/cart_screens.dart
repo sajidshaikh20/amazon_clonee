@@ -6,6 +6,8 @@ import 'package:amazon_clonee/widget/cart_item.dart';
 import 'package:amazon_clonee/widget/custom_main_botton.dart';
 import 'package:amazon_clonee/widget/search_bar_widget.dart';
 import 'package:amazon_clonee/widget/user_details_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class CartScreen extends StatefulWidget {
@@ -49,29 +51,35 @@ class _CartScreenState extends State<CartScreen> {
                       onPressed: () {}),
                 ),
                 Expanded(
-                  child: ListView.builder(
-                      itemCount: 5,
-                      itemBuilder: (context, index) {
-                        return CartItemsWidget(
-                          product: ProductModel(
-                              url:
-                                  "https://m.media-amazon.com/images/I/11uufjN3lYL._SX90_SY90_.png",
-                              productName: "sajid_bhuru",
-                              cost: 9744646,
-                              discount: 0,
-                              uid: "sachin",
-                              sellerName: "kavita",
-                              sellerUid: "15ca16",
-                              rating: 3,
-                              noOfRating: 5),
-                        );
-                      }),
+                  child: StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection("users")
+                        .doc(FirebaseAuth.instance.currentUser!.uid)
+                        .collection("cart")
+                        .snapshots(),
+                    builder: (context,
+                        AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                            snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Container();
+                      } else {
+                        return ListView.builder(
+                            itemCount: snapshot.data!.docs.length,
+                            itemBuilder: (context, index) {
+                              ProductModel model =
+                                  ProductModel.getModelFromJson(
+                                      json: snapshot.data!.docs[index].data());
+                              return CartItemsWidget(product: model);
+                            });
+                      }
+                    },
+                  ),
                 )
               ],
             ),
-            UserDetailsBar(
-                offset: 0,
-                ),
+            const UserDetailsBar(
+              offset: 0,
+            ),
           ],
         ),
       ),
