@@ -109,12 +109,21 @@ class CloudFirestoreClass {
   }
 
   Future uploadReviewToDatabase(
-      {required String productUid, required
-      ReviewModel model}) async {
-  await  firebaseFirestore
+      {required String productUid, required ReviewModel model}) async {
+    await firebaseFirestore
         .collection("products")
         .doc(productUid)
         .collection("reviews")
         .add(model.getJson());
+  }
+
+  Future addProductTocart({
+    required ProductModel productModel,
+  }) async {
+    await firebaseFirestore
+        .collection("users")
+        .doc(firebaseAuth.currentUser!.uid)
+        .collection("cart")
+        .add(productModel.getJson());
   }
 }

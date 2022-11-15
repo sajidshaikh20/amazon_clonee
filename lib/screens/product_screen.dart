@@ -1,6 +1,7 @@
 import 'package:amazon_clonee/model/product_model.dart';
 import 'package:amazon_clonee/model/review_model.dart';
 import 'package:amazon_clonee/model/user_details.dart';
+import 'package:amazon_clonee/resources/cloudfirestore.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:amazon_clonee/utils/constant.dart';
 import 'package:amazon_clonee/utils/utils.dart';
@@ -97,7 +98,13 @@ class _ProductScreenStateState extends State<ProductScreenState> {
                 CustomMainBotton(
                     color: Colors.yellow,
                     isLoading: false,
-                    onPressed: () {},
+                    onPressed: () async {
+                      //product model to data base
+                      await CloudFirestoreClass()
+                          .addProductTocart(productModel: widget.productModel);
+                      Utils().showSnackBar(
+                          context: context, content: "Added to cart");
+                    },
                     child: const Text("Add to cart",
                         style: TextStyle(color: Colors.black))),
                 spaceThingy,
@@ -105,7 +112,9 @@ class _ProductScreenStateState extends State<ProductScreenState> {
                     onPressed: () {
                       showDialog(
                           context: context,
-                          builder: (context) =>  ReviewDialog(productUid: widget.productModel.uid,));
+                          builder: (context) => ReviewDialog(
+                                productUid: widget.productModel.uid,
+                              ));
                     },
                     text: "Add to review for this product"),
                 SizedBox(
