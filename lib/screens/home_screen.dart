@@ -34,11 +34,11 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    controller.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   controller.dispose();
+  // }
 
   void getData() async {
     List<Widget> temp70 =

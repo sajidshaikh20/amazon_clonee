@@ -15,6 +15,7 @@ import 'package:amazon_clonee/widget/search_bar_widget.dart';
 import 'package:amazon_clonee/widget/user_details_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class ProductScreenState extends StatefulWidget {
@@ -137,6 +138,7 @@ class _ProductScreenStateState extends State<ProductScreenState> {
                           return Container();
                         } else {
                           return ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
                               itemCount: snapshot.data!.docs.length,
                               itemBuilder: (context, index) {
                                 ReviewModel model =
