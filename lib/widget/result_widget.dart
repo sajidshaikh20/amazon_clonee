@@ -1,4 +1,5 @@
 import 'package:amazon_clonee/model/product_model.dart';
+import 'package:amazon_clonee/screens/product_screen.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:amazon_clonee/utils/utils.dart';
 import 'package:amazon_clonee/widget/cost_widget.dart';
@@ -13,7 +14,13 @@ class ResultWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size screenSize = Utils().getScreenSize();
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    ProductScreenState(productModel: product)));
+      },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(

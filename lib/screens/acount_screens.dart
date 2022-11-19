@@ -1,3 +1,4 @@
+import 'package:amazon_clonee/model/order_request.dart';
 import 'package:amazon_clonee/model/product_model.dart';
 import 'package:amazon_clonee/model/user_details.dart';
 import 'package:amazon_clonee/providers/user_details_provider.dart';
@@ -46,7 +47,9 @@ class _AccountScreenState extends State<AccountScreen> {
                     ),
                     color: Colors.orange,
                     isLoading: false,
-                    onPressed: () {}),
+                    onPressed: () {
+                      FirebaseAuth.instance.signOut();
+                    }),
                 CustomMainBotton(
                     // ignore: sort_child_properties_last
                     child: const Text(
@@ -96,20 +99,48 @@ class _AccountScreenState extends State<AccountScreen> {
                   ),
                 ),
                 Expanded(
-                    child: ListView.builder(
-                        itemCount: 5,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            title: const Text(
-                              "Order black shoe",
-                              style: TextStyle(fontWeight: FontWeight.w500),
-                            ),
-                            subtitle: const Text("Address: somewhere on earth"),
-                            trailing: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.check)),
-                          );
-                        }))
+                    child: StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection("users")
+                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                      .collection("orderRequests")
+                      .snapshots(),
+                  builder: (context,
+                      AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                          snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Container();
+                    } 
+                    else{
+                      return ListView.builder(
+                          itemCount: snapshot.data!.docs.length,
+                          itemBuilder:(context, index) {
+                            OrderRequestModel model =
+                                OrderRequestModel.getModelFromJson(
+                                    json: snapshot.data!.docs[index].data());
+                            return ListTile(
+                              title: Text(
+                                "Order: ${model.orderName}",
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              subtitle: Text("Address: ${model.buyersAddress}"),
+                              trailing: IconButton(
+                                  onPressed: () async {
+                                    FirebaseFirestore.instance
+                                        .collection("users")
+                                        .doc(FirebaseAuth
+                                            .instance.currentUser!.uid)
+                                        .collection("orderRequests")
+                                        .doc(snapshot.data!.docs[index].id)
+                                        .delete();
+                                  },
+                                  icon: const Icon(Icons.check)),
+                            );
+                          });
+                    }
+                  },
+                ))
               ],
             ),
           ),
@@ -173,3 +204,29 @@ class IntroductionWidgetAccounScreen extends StatelessWidget {
     );
   }
 }
+// ListView.builder(
+//                           itemCount: snapshot.data!.docs.length,
+//                           itemBuilder: (context, index) {
+//                             OrderRequestModel model =
+//                                 OrderRequestModel.getModelFromJson(
+//                                     json: snapshot.data!.docs[index].data());
+//                             return ListTile(
+//                               title: Text(
+//                                 "Order: ${model.orderName}",
+//                                 style: const TextStyle(
+//                                     fontWeight: FontWeight.w500),
+//                               ),
+//                               subtitle: Text("Address: ${model.buyersAddress}"),
+//                               trailing: IconButton(
+//                                   onPressed: () async {
+//                                     FirebaseFirestore.instance
+//                                         .collection("users")
+//                                         .doc(FirebaseAuth
+//                                             .instance.currentUser!.uid)
+//                                         .collection("orderRequests")
+//                                         .doc(snapshot.data!.docs[index].id)
+//                                         .delete();
+//                                   },
+//                                   icon: const Icon(Icons.check)),
+//                             );
+//                           });

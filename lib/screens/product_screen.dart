@@ -1,6 +1,7 @@
 import 'package:amazon_clonee/model/product_model.dart';
 import 'package:amazon_clonee/model/review_model.dart';
 import 'package:amazon_clonee/model/user_details.dart';
+import 'package:amazon_clonee/providers/user_details_provider.dart';
 import 'package:amazon_clonee/resources/cloudfirestore.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:amazon_clonee/utils/constant.dart';
@@ -17,6 +18,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductScreenState extends StatefulWidget {
   final ProductModel productModel;
@@ -93,8 +95,11 @@ class _ProductScreenStateState extends State<ProductScreenState> {
                     color: Colors.orange,
                     isLoading: false,
                     onPressed: () async {
-                      await CloudFirestoreClass()
-                          .addProductToOrder(model: widget.productModel);
+                      await CloudFirestoreClass().addProductToOrder(
+                          model: widget.productModel,
+                          userDetails: Provider.of<UserDetailsProvider>(context,
+                                  listen: false)
+                              .userDetails);
                       Utils().showSnackBar(context: context, content: "Done");
                     },
                     child: const Text("Buy Now",
