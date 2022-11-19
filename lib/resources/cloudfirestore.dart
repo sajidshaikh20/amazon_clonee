@@ -159,4 +159,8 @@ class CloudFirestoreClass {
         .collection("orders")
         .add(model.getJson());
   }
+  Future sendOrderRequest({ required ProductModel model, }) async {
+
+    
+  }
 }

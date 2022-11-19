@@ -92,8 +92,9 @@ class _ProductScreenStateState extends State<ProductScreenState> {
                     color: Colors.orange,
                     isLoading: false,
                     onPressed: () async {
-                      CloudFirestoreClass()
+                      await CloudFirestoreClass()
                           .addProductToOrder(model: widget.productModel);
+                      Utils().showSnackBar(context: context, content: "Done");
                     },
                     child: const Text("Buy Now",
                         style: TextStyle(color: Colors.black))),
