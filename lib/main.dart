@@ -5,6 +5,7 @@ import 'package:amazon_clonee/screens/product_screen.dart';
 import 'package:amazon_clonee/screens/result_screens.dart';
 import 'package:amazon_clonee/screens/sell_screen.dart';
 import 'package:amazon_clonee/screens/sign_in_screens.dart';
+import 'package:amazon_clonee/splash.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -41,22 +42,25 @@ class MyApp extends StatelessWidget {
           theme: ThemeData.light().copyWith(
             scaffoldBackgroundColor: backgroundColor,
           ),
-          home: StreamBuilder(
-            stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (context, AsyncSnapshot<User?> user) {
-              if (user.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.orange,
-                  ),
-                );
-              } else if (user.hasData) {
-                return const ScreenLayout();
-              } else {
-                return const SignInScreen();
-              }
-            },
-          )),
+          home: const Splash()
+
+          // StreamBuilder(
+          //   stream: FirebaseAuth.instance.authStateChanges(),
+          //   builder: (context, AsyncSnapshot<User?> user) {
+          //     if (user.connectionState == ConnectionState.waiting) {
+          //       return const Center(
+          //         child: CircularProgressIndicator(
+          //           color: Colors.orange,
+          //         ),
+          //       );
+          //     } else if (user.hasData) {
+          //       return const ScreenLayout();
+          //     } else {
+          //       return const SignInScreen();
+          //     }
+          //   },
+          // )
+          ),
     );
   }
 }

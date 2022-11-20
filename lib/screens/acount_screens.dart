@@ -112,6 +112,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       return Container();
                     } else {
                       return ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context, index) {
                             OrderRequestModel model =
