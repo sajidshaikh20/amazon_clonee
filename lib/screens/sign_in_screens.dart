@@ -1,3 +1,4 @@
+import 'package:amazon_clonee/layout/screen_layout.dart';
 import 'package:amazon_clonee/resources/authenticatio_method.dart';
 import 'package:amazon_clonee/screens/sign_up_screens.dart';
 import 'package:amazon_clonee/utils/colors_themes.dart';
@@ -95,8 +96,13 @@ class _SignInScreenState extends State<SignInScreen> {
                                   isLoading = false;
                                 });
                                 if (output == "success") {
-                                  
+                                  // print("done");
                                   //function
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: ((context) =>
+                                              ScreenLayout())));
                                 } else {
                                   //eror
                                   Utils().showSnackBar(

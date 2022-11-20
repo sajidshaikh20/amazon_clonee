@@ -18,7 +18,7 @@ class _SplashState extends State<Splash> {
   }
 
   _navigatetohome() async {
-    await Future.delayed(const Duration(milliseconds: 1000), () {});
+    await Future.delayed(const Duration(seconds: 3), () {});
     // ignore: use_build_context_synchronously
     Navigator.pushReplacement(context, MaterialPageRoute(
       builder: (context) {
@@ -48,6 +48,7 @@ class _SplashState extends State<Splash> {
       body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
+          color: Colors.white,
           child: const Image(
             image: AssetImage('lib/assets/amaz.jpg'),
             fit: BoxFit.fill,
