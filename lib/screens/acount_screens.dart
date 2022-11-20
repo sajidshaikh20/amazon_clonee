@@ -103,18 +103,17 @@ class _AccountScreenState extends State<AccountScreen> {
                   stream: FirebaseFirestore.instance
                       .collection("users")
                       .doc(FirebaseAuth.instance.currentUser!.uid)
-                      .collection("orderRequests")
+                      .collection("orderRequest")
                       .snapshots(),
                   builder: (context,
                       AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
                           snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return Container();
-                    } 
-                    else{
+                    } else {
                       return ListView.builder(
                           itemCount: snapshot.data!.docs.length,
-                          itemBuilder:(context, index) {
+                          itemBuilder: (context, index) {
                             OrderRequestModel model =
                                 OrderRequestModel.getModelFromJson(
                                     json: snapshot.data!.docs[index].data());
@@ -131,7 +130,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                         .collection("users")
                                         .doc(FirebaseAuth
                                             .instance.currentUser!.uid)
-                                        .collection("orderRequests")
+                                        .collection("orderRequest")
                                         .doc(snapshot.data!.docs[index].id)
                                         .delete();
                                   },

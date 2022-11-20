@@ -89,7 +89,8 @@ class _ProductScreenStateState extends State<ProductScreenState> {
                 ),
                 spaceThingy,
                 CostWiddddddget(
-                    color: Colors.black, cost: widget.productModel.cost),
+                    color: Colors.black,
+                    cost: widget.productModel.cost),
                 spaceThingy,
                 CustomMainBotton(
                     color: Colors.orange,

@@ -5,6 +5,7 @@ import 'package:amazon_clonee/utils/constant.dart';
 import 'package:amazon_clonee/utils/utils.dart';
 import 'package:amazon_clonee/widget/custom_main_botton.dart';
 import 'package:amazon_clonee/widget/text_field.widget.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -94,9 +95,10 @@ class _SignInScreenState extends State<SignInScreen> {
                                   isLoading = false;
                                 });
                                 if (output == "success") {
+                                  
                                   //function
                                 } else {
-                                  //erir
+                                  //eror
                                   Utils().showSnackBar(
                                       context: context, content: output);
                                 }

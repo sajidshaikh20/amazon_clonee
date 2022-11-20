@@ -21,7 +21,7 @@ class ReviewDialog extends StatelessWidget {
         ),
       ),
       submitButtonText: 'Send',
-      commentHint: 'type here',
+      commentHint: 'Type here',
       onSubmitted: (RatingDialogResponse res) async {
         CloudFirestoreClass().uploadReviewToDatabase(
           productUid: productUid,

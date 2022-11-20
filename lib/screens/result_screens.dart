@@ -39,7 +39,7 @@ class ResultScreen extends StatelessWidget {
           Expanded(
             child: FutureBuilder(
                 future: FirebaseFirestore.instance
-                    .collection("productName")
+                    .collection("products")
                     .where("productName", isEqualTo: query)
                     .get(),
                 builder: (context,
@@ -58,6 +58,16 @@ class ResultScreen extends StatelessWidget {
                               json: snapshot.data!.docs[index].data());
                           return ResultWidget(product: product);
                         });
+                    // return GridView.builder(
+                    //     gridDelegate:
+                    //         const SliverGridDelegateWithFixedCrossAxisCount(
+                    //             crossAxisCount: 3, childAspectRatio: 2 / 3.5),
+                    //     itemCount: snapshot.data!.docs.length,
+                    //     itemBuilder: (context, index) {
+                    //       ProductModel product = ProductModel.getModelFromJson(
+                    //           json: snapshot.data!.docs[index].data());
+                    //       return ResultWidget(product: product);
+                    //     });
                   }
                 }),
           )

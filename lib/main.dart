@@ -51,9 +51,7 @@ class MyApp extends StatelessWidget {
                   ),
                 );
               } else if (user.hasData) {
-                // FirebaseAuth.instance.signOut();
                 return const ScreenLayout();
-                // return const SellScreen();
               } else {
                 return const SignInScreen();
               }

@@ -29,7 +29,7 @@ class CostWiddddddget extends StatelessWidget {
           ),
         ),
         Text(
-          (cost - cost.toInt()).toString(),
+          (cost - cost.toInt()).toStringAsFixed(2),
           style: const TextStyle(
             fontSize: 7,
             fontFeatures: [FontFeature.superscripts()],
